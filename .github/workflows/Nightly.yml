@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     
   release:
-    types: [released]
+    types: [published]
   
 jobs:
   update:
@@ -16,11 +16,19 @@ jobs:
         os: [ubuntu-20.04]
  
     steps:
-      - name: Deploy Ubuntu vim, NGINX
-        if: matrix.os == 'ubuntu-20.04'
-        uses: actions/checkout@v2.4.0
-      - name: Install
-        run: |
+    
+          
+    - name: Deploy Ubuntu vim, NGINX
+      if: matrix.os == 'ubuntu-20.04'
+      uses: actions/checkout@v2.4.0
+    - name: Install
+      run: |
           sudo apt-get install gcc
           sudo apt-get install vim
           sudo apt-get install nginx
+          
+    - uses: Actions-R-Us/actions-tagger@95c51c646e75db5c6b7d447e3087bcee58677341
+      with:
+        publish_latest: true
+      env:
+          GITHUB_TOKEN: '${{secrets.GITHUB_TOKEN}}'
