@@ -1,19 +1,19 @@
 
-    This is the source code distribution of "less".
-    This program is part of the GNU project (http://www.gnu.org).
+	 Esta é a distribuição do código-fonte de "LESS".
+     Este programa faz parte do projeto GNU (http://www.gnu.org).
 
-    This program is free software.  You may redistribute it and/or
-    modify it under the terms of either:
+     Este programa é um software livre. Você pode redistribuí-lo e/ou
+     modificá-lo sob os termos de:
 
-    1. The GNU General Public License, as published by the Free
-       Software Foundation; either version 3, or (at your option) any
-       later version.  A copy of this license is in the file COPYING.
-    or
-    2. The Less License, in the file LICENSE.
+     1. A GNU General Public License, conforme publicada pela Free
+        Fundação de Software; quer a versão 3, ou (a seu critério) qualquer
+        versão posterior. Uma cópia desta licença está no arquivo COPYING.
+     ou
+     2. A Menos Licença, no arquivo LICENÇA.
 
-    Please report any problems at https://github.com/gwsw/less/issues.
-    See https://greenwoodsoftware.com/less for the latest info.
-    Source repository is at https://github.com/gwsw/less.git.
+     Por favor, reporte quaisquer problemas em https://github.com/gwsw/less/issues.
+     Consulte https://greenwoodsoftware.com/less para obter as informações mais recentes.
+     O repositório de origem está em https://github.com/gwsw/less.git.
 
 =========================================================================
 
