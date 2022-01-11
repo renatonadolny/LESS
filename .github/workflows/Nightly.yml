@@ -1,24 +1,24 @@
 name: Nightly
-on: 
-  workflow_dispatch:
+on:
+  release:
+    types: [released]
+  
 jobs:
-  release-project:
+  update:
+    runs-on: ubuntu-20.04
+    
     name: Nightly		
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-20.04]
-    runs-on: self-hosted
+ 
     steps:
       - name: Deploy Ubuntu vim, NGINX
         if: matrix.os == 'ubuntu-20.04'
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # automatically provided by github actions
-        with:
-          upload_url: https://uploads.github.com/repos/renatonadolny/less/releases/56837515/assets{?name,label}
-          release_id: 56837515
-          asset_path: ./ # path to archive to upload
-          asset_name: less_ubuntu-nightly-$$.tgz # name to upload the release as, use $$ to insert date (YYYYMMDD) and 6 letter commit hash
-          asset_content_type: application/tgz # required by GitHub API
-          max_releases: 30 # optional, if there are more releases than this matching the asset_name, the oldest ones are going to be deleted
+        uses: actions/checkout@v2.4.0
+      - name: Install
+        run: |
+          sudo apt-get install gcc
+          sudo apt-get install vim
+          sudo apt-get install nginx
