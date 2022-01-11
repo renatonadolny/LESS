@@ -3,9 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   release-project:
-    name: update-noturno
-	
-		
+    name: Nightly		
     strategy:
       fail-fast: false
       matrix:
