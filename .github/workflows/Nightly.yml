@@ -2,8 +2,10 @@ name: Nightly
 on: 
   workflow_dispatch:
 jobs:
-  nightly:
-    name: Deploy nightly
+  release-project:
+    name: update-noturno
+	
+		
     strategy:
       fail-fast: false
       matrix:
