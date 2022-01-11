@@ -1,31 +1,37 @@
 name: Nightly
+
 on:
-  workflow_dispatch:
-    
-  release:
-    types: [published]
-  
+workflow_dispatch:
+
 jobs:
-  update:
-    runs-on: ubuntu-20.04    
-    name: Nightly		
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-20.04]
- 
-    steps:          
-    - name: Install/Update GCC,VIM, NGINX
-      if: matrix.os == 'ubuntu-20.04'
-      uses: actions/checkout@v2.4.0
-    - name: Install
-      run: |
-          sudo apt-get install gcc
-          sudo apt-get install vim
-          sudo apt-get install nginx          
-    - uses: Actions-R-Us/actions-tagger@95c51c646e75db5c6b7d447e3087bcee58677341
-      with:
-        publish_latest: true
-        publish_latest_tag: false
-      env:
-          GITHUB_TOKEN: '${{secrets.GITHUB_TOKEN}}'
+  release-project:
+    name: Release Ubuntu LESS
+		runs-on: ubuntu-latest
+			
+		steps:
+			- name: Download Conteudo site
+        uses: actions/download-artifact@v2
+        with:
+        	name: static-less
+      - name: Conteudo dos arquivos
+			  uses: thedoctor0/zip-release@master
+			  with:
+			    filename: less-project.tar
+			- name: Criar Release GitHub
+			  id: create-new-release
+			  uses: actions/create-release@v1
+			  env:
+				  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+			  with:
+			    tag_name: v${{ github.run_number}}
+				  release_name: Release V${{ github.run_number}}
+			- name: Upload asset to github release-project
+			  uses: actions/upload-release-asset@v1
+			  env:
+				  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+			  with:
+			    upload_url: ${{ steps.create-new-release.outputs.upload_url}}
+				  asset_path: ./less.tar
+				  asset_name: site-v${{ github.run_number}}.tar
+				  asset_content_type: application/tar
+
