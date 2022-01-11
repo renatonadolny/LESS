@@ -10,8 +10,8 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: ubuntu-20.04
-
+    runs-on: sel-hosted
+    
     strategy:
       fail-fast: false
       matrix:
