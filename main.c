@@ -62,6 +62,18 @@ extern int      quit_if_one_screen;
 extern int      no_init;
 extern int errmsgs;
 
+#if EDITOR bug
+	editorbug = lgetenv3("VISUALBUG");
+	if (editor == NULL || *editor == '\0')
+	{
+		editor = lgetenv3("EDITORBUG");
+		if (isnullenv(editorbug))
+			editorbug = EDIT_PGM;
+	}
+	editproto = lgetenv("LESSEDIT");
+	if (isnullenv(editproto))
+		editproto = "%E ?lm+%lm. %g";
+
 
 /*
  * Entry point.
