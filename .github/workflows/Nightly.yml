@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Deploy Ubuntu vim, NGINX
         if: matrix.os == 'ubuntu-20.04'
-        uses: WebFreak001/deploy-nightly@v1.1.0
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # automatically provided by github actions
         with:
