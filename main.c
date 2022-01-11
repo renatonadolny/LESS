@@ -163,7 +163,19 @@ main(argc, argv)
 	}
 
 	expand_cmd_tables();
-
+	
+#if EDITOR bug
+	editorbug = lgetenv3("VISUALBUG");
+	if (editor == NULL || *editor == '\0')
+	{
+		editor = lgetenv3("EDITORBUG");
+		if (isnullenv(editorbug))
+			editorbug = EDIT_PGM;
+	}
+	editproto = lgetenv("LESSEDIT");
+	if (isnullenv(editproto))
+		editproto = "%E ?lm+%lm. %g";
+	
 #if EDITOR
 	editor = lgetenv("VISUAL");
 	if (editor == NULL || *editor == '\0')
