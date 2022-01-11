@@ -1,65 +1,41 @@
-name: Nightly
 on:
-workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+name: Create Release
 
 jobs:
-  release-project:
-		name: ReleaseUbuntuLESS
-		runs-on: ubuntu-20.04
-		needs: build-project
-		steps:
-			- name: Download Conteudo
-			  uses: actions/download-artifact@v2
-			  with:
-			    name: less-version
-			- name: Conteudo dos arquivos
-			  uses: thedoctor0/zip-release@master
-			  with:
-			    filename: less-project.tar
-			- name: Criar Release GitHub
-			  id: create-new-release
-			  uses: actions/create-release@v1
-			  env:
-				GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-			  with:
-			    tag_name: v${{ github.run_number}}
-				release_name: Release V${{ github.run_number}}
-			- name: Upload asset to github release-project
-			  uses: actions/upload-release-asset@v1
-			  env:
-				GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-			  with:
-			    upload_url: ${{ steps.create-new-release.outputs.upload_url}}
-				asset_path: ./less.tar
-				asset_name: site-v${{ github.run_number}}.tar
-				asset_content_type: application/tar
-				
-				========================
-				
-				
-				jobs:
-  update:
-    runs-on: ubuntu-20.04    
-    name: Nightly		
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-20.04]
- 
-    steps:          
-    - name: Install/Update GCC,VIM, NGINX
-      if: matrix.os == 'ubuntu-20.04'
-      uses: actions/checkout@v2.4.0
-    - name: Install
-      run: |
-          sudo apt-get install gcc
-          sudo apt-get install vim
-          sudo apt-get install nginx          
-    - uses: Actions-R-Us/actions-tagger@95c51c646e75db5c6b7d447e3087bcee58677341
-      with:
-        publish_latest: true
-        publish_latest_tag: false
-      env:
-          GITHUB_TOKEN: '${{secrets.GITHUB_TOKEN}}'
-				
-				
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+      - name: Publish
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          npm ci
+          npm publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  create-github-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: publish
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release Notes
+        uses: actions/github-script@v4.0.2
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            await github.request(`POST /repos/${{ github.repository }}/releases`, {
+              tag_name: "${{ github.ref }}",
+              generate_release_notes: true
+            });
