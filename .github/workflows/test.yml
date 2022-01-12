@@ -16,7 +16,15 @@ jobs:
       - name: Instalar dependencias
         run: |           
             sudo apt-get install gcc cmake
-      - name: Iniciar less
+      - name: Iniciar configure
         run: |
             sudo sh configure
+      - name: Fazer make
+        run: |
             sudo make
+      - name: Instalar nginx
+        run: |
+            sudo apt-get install nginx
+      - name: versão nginx
+        run: |
+            sudo nginx --version
