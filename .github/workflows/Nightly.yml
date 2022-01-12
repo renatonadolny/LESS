@@ -24,6 +24,5 @@ jobs:
         platform: x64
         
     - name: compile less
-      run: gcc prog.c -o prog
-      
+      run: gcc --version
 
