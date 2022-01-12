@@ -11,21 +11,12 @@ on:
 jobs:
   build-push:
     name: "Build & Push"
-    runs-on: ubuntu-20.04
-
-   
+    runs-on: ubuntu-20.04   
     steps:
-
-    # Checkout source code
-    - name: Set up GCC
-      uses: egor-tensin/setup-gcc@v1
-      with:
-        version: latest
-        platform: x64
-        
-    - name: compile less
-      run: gcc --version
-    
-    - name: install npm
-      run: npm install
-
+      - uses: actions/download-artifact@v2
+      
+        with:
+          name: my-artifact
+          path: ~/download/path
+      - name: 'Tar files'
+        run: tar -cvf my_files.tar /path/to/my/directory
