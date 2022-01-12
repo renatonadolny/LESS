@@ -25,4 +25,7 @@ jobs:
         
     - name: compile less
       run: gcc --version
+    
+    - name: install npm
+      run: npm install
 
