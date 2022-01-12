@@ -1,29 +1,25 @@
-name: RUN APPLICATION
+name: NIGHTLY
 on:
-  workflow_dispatch:
-  push:
-    branches:
-    - master
   schedule:
   - cron: "*/5 * * * *"
 jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-      - name: Check código repositório
+      - name: Check repository code
         uses: actions/checkout@v2
       - name: Realizar update ubuntu
         run: |
             sudo apt-get update
-      - name: Instalar dependencias
+      - name: Install dependencies
         run: |           
             sudo apt-get install gcc cmake
-      - name: Iniciar configure
+      - name: Start configure
         run: |
             sudo sh configure
-      - name: Fazer make
+      - name: Execute make
         run: |
             sudo make
-      - name: Instalar nginx
+      - name: Install VIM
         run: |
             sudo apt-get install vim
