@@ -13,10 +13,15 @@ jobs:
     name: "Build & Push"
     runs-on: ubuntu-20.04   
     steps:
-      - uses: actions/download-artifact@v2
-      
+    
+      - name: step 1
+        run: mkdir downloads
+      - name: step 2
+        run: ls
+      - name: step 3
+        uses: actions/download-artifact@v2      
         with:
           name: my-artifact
-          path: ~/download/path
-      - name: 'Tar files'
-        run: tar -cvf my_files.tar /path/to/my/directory
+          path: downloads
+      - name: step 4
+        run: ls
