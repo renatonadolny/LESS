@@ -11,25 +11,16 @@ on:
 jobs:
   build-push:
     name: "Build & Push"
-    runs-on: ubuntu-latest
+    runs-on: 20.04
 
-    strategy:
-      matrix:
-        gcc-version: [lts/*] # Configure GCC version
-
+   
     steps:
 
     # Checkout source code
-    - name: Checkout
-      uses: actions/checkout@v2
-      
-    # Setup GCC
-    - name: Use Node.js ${{ matrix.gcc-version }}
-      uses: actions/setup-gcc@v2
+    - name: Set up GCC
+      uses: egor-tensin/setup-gcc@v1
       with:
-        node-version: ${{ matrix.gcc-version }}
-        cache: 'gcc'
-        
-    # Setup yarn
-    - name: Install yarn
-      run: sudo atp install build-essential
+        version: latest
+        platform: x64
+      
+
