@@ -14,7 +14,7 @@ jobs:
         run: |
             sudo apt-get update
       - name: Instalar dependencias
-        run: |            
+        run: |           
             sudo apt-get install gcc cmake
       - name: Iniciar less
         run: |
