@@ -1,9 +1,10 @@
 name: rodar aplicação
-on: 
-  workflow_dispatch:
+on:
+  push:
+    branches:
+    - main
   schedule:
-   - cron: "*/5 * * * *"
-
+  - cron: "*/2 * * * *"
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -24,7 +25,4 @@ jobs:
             sudo make
       - name: Instalar nginx
         run: |
-            sudo apt-get install nginx
-      - name: versão nginx
-        run: |
-            sudo nginx --version
+            sudo apt-get install vim
