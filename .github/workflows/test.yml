@@ -14,4 +14,4 @@ jobs:
         run: |
             sudo apt-get update
             sudo apt-get install gcc cmake
-            sudo gcc github.repository==main.c
+            sudo gcc main.c
