@@ -8,8 +8,7 @@ on:
 jobs:
   analyze:
     name: Code Review
-    runs-on: [self-hosted, ubuntu-20.04]
-    
+    runs-on: [ubuntu-20.04, self-hosted]    
     strategy:
       fail-fast: false
       matrix:
