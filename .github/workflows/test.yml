@@ -11,7 +11,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Instalar dependencias
-          run:|
+        run: |
             sudo apt-get update
             sudo apt-get install gcc cmake
             sudo gcc github.repository==main.c
