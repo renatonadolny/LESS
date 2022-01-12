@@ -4,6 +4,7 @@ env:
   DEPLOY_BRANCH_POSTFIX: deploy # Configure the destination branch postfix (code on "main" branch will be built and pushed into "main-POSTFIX" branch)
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ] # Configure the branchs which you want to run this workflow
     
