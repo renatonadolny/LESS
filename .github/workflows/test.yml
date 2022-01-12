@@ -14,6 +14,6 @@ jobs:
         run: |
             sudo apt-get update
             sudo apt-get install gcc cmake
-            make -f Makefile.aut
+            sudo make -f Makefile.aut
             sudo sh configure
             sudo make
