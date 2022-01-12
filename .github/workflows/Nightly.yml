@@ -6,11 +6,11 @@ env:
 on:
   workflow_dispatch:
   push:
-    branches: [ main ] # Configure the branchs which you want to run this workflow   
+    branches: [ main ] # Configure the branchs which you want to run this workflow  
 jobs:
   build-push:
     name: "Build & Push"
-    runs-on: ubuntu-20.04  
+    runs-on: ubuntu-20.04 
     steps:
       - uses: actions/checkout@v2
       - name: step 1
@@ -18,7 +18,7 @@ jobs:
       - name: step 2
         run: ls
       - name: step 3
-        uses: actions/download-artifact@v2     
+        uses: actions/download-artifact@v2    
         with:
           name: my-artifact
           path: downloads
