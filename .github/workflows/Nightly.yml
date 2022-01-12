@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
-          run: |
+          uses: |
             sudo apt-get install libgtk-3-dev build-essential wget
             sh configure
             
