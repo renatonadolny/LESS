@@ -1,7 +1,7 @@
 name: NIGHTLY
 on:
   schedule:
-  - cron: "*/5 * * * *"
+  - cron: "1 21 * * *"
 jobs:
   build:
     runs-on: ubuntu-20.04
