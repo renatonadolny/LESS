@@ -8,11 +8,15 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-      - name: Check out repository code
+      - name: Check código repositório
         uses: actions/checkout@v2
-      - name: Instalar dependencias
+      - name: Realizar update ubuntu
         run: |
             sudo apt-get update
+      - name: Instalar dependencias
+        run: |            
             sudo apt-get install gcc cmake
+      - name: Iniciar less
+        run: |
             sudo sh configure
             sudo make
