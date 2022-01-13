@@ -14,6 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: build
-      run: gcc main.c -o main.sh
+      run: gcc charset.c -o charset.sh
     - name: Run
-      run: .\main.sh
+      run: .\charset.sh
