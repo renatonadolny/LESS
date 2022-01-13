@@ -14,6 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: build
-      run: gcc main.c -o
+      run: gcc main.c -o main.sh
     - name: Run
       run: .\main.sh
