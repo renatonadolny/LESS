@@ -9,15 +9,11 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
-    - name: configure
-      run: sudo ./configure
-    - name: make
-      run: sudo make
-    - name: make check
-      run: sudo make check
-    - name: make distcheck
-      run: sudo make distcheck
+    - name: build
+      run: gcc main.c -o
+    - name: Run
+      run: .\main.sh
