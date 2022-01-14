@@ -1,8 +1,10 @@
 name: NIGHTLY
 on:
+  watch:
+      - master
   workflow_dispatch:
   schedule:
-  - cron: "1 4 * * *"
+  - cron: "0/5 * * *"
 jobs:
   build:
     strategy:
