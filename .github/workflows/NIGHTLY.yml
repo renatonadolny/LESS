@@ -1,10 +1,10 @@
 name: NIGHTLY
 on:
   schedule:
-  - cron: "1 21 * * *"
+  - cron: "1 4 * * *"
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: [self-hosted, ubuntu-20.04]
     steps:
       - name: Check repository code
         uses: actions/checkout@v2
