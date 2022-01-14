@@ -4,10 +4,15 @@ on:
   - cron: "1 4 * * *"
 jobs:
   build:
-    runs-on: [self-hosted, ubuntu-20.04]
+    strategy:
+      matrix:
+        refs: [refs/heads/master]
+    runs-on: [ubuntu-20.04]
     steps:
       - name: Check repository code
         uses: actions/checkout@v2
+        with:
+          ref: ${{ matrix.refs }}
       - name: Realizar update ubuntu
         run: |
             sudo apt-get update
