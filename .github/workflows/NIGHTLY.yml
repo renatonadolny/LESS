@@ -1,7 +1,7 @@
 name: NIGHTLY
 on:
-  watch:
-      - master
+  branch_protection_rule:
+    - master
   workflow_dispatch:
   schedule:
   - cron: "0/5 * * *"
