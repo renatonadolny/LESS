@@ -1,0 +1,1 @@
+Runner executado em meu próprio equipamento, com parâmetros de sistema operacional configurados no workflow do github actions.
