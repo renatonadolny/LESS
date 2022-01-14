@@ -1,10 +1,10 @@
 name: NIGHTLY
 on:
-  branch_protection_rule:
-    - master
   workflow_dispatch:
   schedule:
   - cron: "0/5 * * *"
+  label:
+    - master
 jobs:
   build:
     strategy:
